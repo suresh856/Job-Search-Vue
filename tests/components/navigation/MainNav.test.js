@@ -1,11 +1,21 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import MainNav from "@/components/navigation/MainNav.vue";
 
 describe("MainNav", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(MainNav, {
+      global: {
+        stubs: {
+          "router-link": RouterLinkStub,
+        },
+      },
+    });
+  });
   it("displays company name", () => {
     // mount method Mounts main component and it's all child components as well and it mounts child components child as well
     // so we can use shallowMount   when we want to test just parent component. it stubs out all child components
-    const wrapper = shallowMount(MainNav);
+
     // as second argument to mount we can pass configuration object. which contains all configuration
     // required in vue component
 
@@ -17,7 +27,6 @@ describe("MainNav", () => {
     expect(wrapper.text()).toMatch("Suresh Careers");
   });
   it("displays menu items for navigation", () => {
-    const wrapper = shallowMount(MainNav);
     const navigationMenuItems = wrapper.findAll(
       "[data-test='main-nav-list-item']"
     ); // to serach an element with attribute use []
@@ -35,7 +44,7 @@ describe("MainNav", () => {
   });
   describe("when user is logged out", () => {
     it("prompts user to sign in", () => {
-      const wrapper = shallowMount(MainNav);
+      // const wrapper = shallowMount(MainNav);
       //second argument, {
       //   data() {
       //     return {
@@ -52,7 +61,7 @@ describe("MainNav", () => {
   });
   describe("when user logs in", () => {
     it("displays user profile picture", async () => {
-      const wrapper = shallowMount(MainNav);
+      // const wrapper = shallowMount(MainNav);
       // const loginButton = wrapper.findComponent({ name: "ActionButton" });
       // const profileImage = wrapper.findComponent({ name: "ProfileImage" });
 
@@ -67,7 +76,7 @@ describe("MainNav", () => {
     });
 
     it("displays subnavigation menu with additional information", async () => {
-      const wrapper = shallowMount(MainNav);
+      // const wrapper = shallowMount(MainNav);
       let subnav = wrapper.find("[data-test='subnav']");
       expect(subnav.exists()).toBe(false);
 

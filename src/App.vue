@@ -1,11 +1,10 @@
 <script>
 import MainNav from "@/components/navigation/MainNav.vue";
-import Hero from "@/components/jobSearch/Hero.vue";
+
 export default {
   name: "App",
   components: {
     MainNav: MainNav,
-    Hero,
   },
 };
 </script>
@@ -14,6 +13,6 @@ export default {
   <!-- we can use kebab case version of component name we register in script file here. so we can use 'main-nav' here -->
   <div>
     <main-nav />
-    <hero />
+    <router-view />
   </div>
 </template>
