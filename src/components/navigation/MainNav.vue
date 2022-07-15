@@ -18,9 +18,9 @@
               data-test="main-nav-list-item"
             >
               <router-link
-                to="/"
+                :to="menuItem.url"
                 class="flex items-center h-full py-2.5 font-semibold"
-                >{{ menuItem }}</router-link
+                >{{ menuItem.text }}</router-link
               >
             </li>
           </ul>
@@ -57,12 +57,12 @@ export default {
       company: "Suresh Careers",
       url: "Home",
       menuItems: [
-        "Teams",
-        "Locations",
-        "Life at Suresh Corp",
-        "How we hire",
-        "Students",
-        "Jobs",
+        { text: "Teams", url: "/", urlName: "" },
+        { text: "Locations", url: "/", urlName: "" },
+        { text: "Life at Suresh Corp", url: "/", urlName: "" },
+        { text: "How we hire", url: "/", urlName: "" },
+        { text: "Students", url: "/", urlName: "" },
+        { text: "Jobs", url: "/jobs/results", urlName: "JobResults" },
       ],
       isLoggedIn: false,
     };
