@@ -29,10 +29,10 @@
           <profile-image v-if="isLoggedIn" data-test="profile-image" />
           <action-button
             v-else
-            data-test="login-botton"
+            data-test="login-button"
             text="Sign in"
             type="primary"
-            @click="loginUser"
+            @click="LOGIN_USER()"
           />
         </div>
       </div>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import ActionButton from "@/components/shared/ActionButton.vue";
 import ProfileImage from "@/components/navigation/ProfileImage.vue";
 import SubNav from "@/components/navigation/SubNav.vue";
@@ -64,7 +65,6 @@ export default {
         { text: "Students", url: "/", urlName: "" },
         { text: "Jobs", url: "/jobs/results", urlName: "JobResults" },
       ],
-      isLoggedIn: false,
     };
   },
   computed: {
@@ -74,11 +74,17 @@ export default {
         "h-32": this.isLoggedIn,
       };
     },
+    // isLoggedIn() {
+    //   return this.$store.state.isLoggedIn;
+    // },
+    // above code can be simplified by helper function below. Other syntax aslo available for helper function
+    ...mapState(["isLoggedIn"]), // pass rest of state object names here.
   },
   methods: {
-    loginUser() {
-      this.isLoggedIn = !this.isLoggedIn;
-    },
+    // LOGIN_USER() {
+    //   this.$store.commit(LOGIN_USER);
+    // },
+    ...mapMutations(["LOGIN_USER"]), // it will give this.LOGIN_USER method in our component. we can pass more mutations names in array to get them also.
   },
 };
 </script>
