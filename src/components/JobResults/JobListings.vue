@@ -32,16 +32,12 @@
   </main>
 </template>
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
+import { FETCH_JOBS } from "@/store";
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",
   components: { JobListing },
-  data() {
-    return {
-      jobs: [],
-    };
-  },
   computed: {
     currentPage() {
       const pageString = this.$route.query.page || "1";
@@ -63,11 +59,15 @@ export default {
       const lastJobIndex = firstJobIndex + 10; // pageNumber * 10;
       return this.jobs.slice(firstJobIndex, lastJobIndex);
     },
+    ...mapState(["jobs"]), // this creates jobs computed property
   },
+
   async mounted() {
-    const baseUrl = process.env.VUE_APP_API_URL;
-    const response = await axios.get(`${baseUrl}/jobs`);
-    this.jobs = response.data;
+    // this.$store.dispatch(FETCH_JOBS); // to run actions in vue
+    this.FETCH_JOBS();
+  },
+  methods: {
+    ...mapActions([FETCH_JOBS]), // this will create FETCH_JOBS method on our component.
   },
 };
 </script>
