@@ -58,7 +58,7 @@ export default {
       company: "Suresh Careers",
       url: "Home",
       menuItems: [
-        { text: "Teams", url: "/", urlName: "" },
+        { text: "Teams", url: "/teams", urlName: "Teams" },
         { text: "Locations", url: "/", urlName: "" },
         { text: "Life at Suresh Corp", url: "/", urlName: "" },
         { text: "How we hire", url: "/", urlName: "" },

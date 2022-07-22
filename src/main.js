@@ -10,11 +10,15 @@ import {
   faSearch,
   faBuilding,
   faMapMarkerAlt,
+  faAngleDown,
+  faAngleUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faSearch);
 library.add(faMapMarkerAlt);
 library.add(faBuilding);
+library.add(faAngleDown);
+library.add(faAngleUp);
 
 createApp(App)
   .use(store)
