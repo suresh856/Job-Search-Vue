@@ -2,13 +2,14 @@ import { mount } from "@vue/test-utils";
 import SubNav from "@/components/navigation/SubNav.vue";
 
 describe("Subnav", () => {
-  const createConfig = (routeName) => ({
+  const createConfig = (routeName, $store = {}) => ({
     global: {
       // mocks used to mock real world object here. we can give our own object for real world object using mocks
       mocks: {
         $route: {
           name: routeName,
         },
+        $store,
       },
       // stubs replaces the component we want in testing. so that it will not search for component for test
       stubs: {
@@ -19,9 +20,15 @@ describe("Subnav", () => {
   describe("when user is on job page", () => {
     it("displays job count", () => {
       const routeName = "JobResults";
-      const wrapper = mount(SubNav, createConfig(routeName));
+      const $store = {
+        getters: {
+          FILTERED_JOB_BY_ORGANIZATIONS: [{ id: 1 }, { id: 2 }],
+        },
+      };
+      const wrapper = mount(SubNav, createConfig(routeName, $store));
       const jobnCount = wrapper.find("[data-test='job-count']");
       expect(jobnCount.exists()).toBe(true);
+      expect(jobnCount.text()).toMatch("2 jobs matched"); // 2 jobs coming from array we used above
     });
   });
   describe("when user is not on job page", () => {

@@ -10,8 +10,8 @@ describe("JobListings", () => {
     },
   });
   const createStore = (config = {}) => ({
-    state: {
-      jobs: Array(15).fill({}),
+    getters: {
+      FILTERED_JOB_BY_ORGANIZATIONS: Array(15).fill({}),
     },
     dispatch: jest.fn(),
     ...config,
