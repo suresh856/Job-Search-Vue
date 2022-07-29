@@ -33,7 +33,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { FETCH_JOBS, FILTERED_JOB_BY_ORGANIZATIONS } from "@/store/constants";
+import { FETCH_JOBS, FILTERED_JOBS } from "@/store/constants";
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",
@@ -50,19 +50,16 @@ export default {
     },
     nextPage() {
       const nextPage = this.currentPage + 1;
-      const maxPage = Math.ceil(this.FILTERED_JOB_BY_ORGANIZATIONS.length / 10);
+      const maxPage = Math.ceil(this.FILTERED_JOBS.length / 10);
       return nextPage <= maxPage ? nextPage : undefined;
     },
     displayedJobs() {
       const pageNumber = this.currentPage;
       const firstJobIndex = (pageNumber - 1) * 10;
       const lastJobIndex = firstJobIndex + 10; // pageNumber * 10;
-      return this.FILTERED_JOB_BY_ORGANIZATIONS.slice(
-        firstJobIndex,
-        lastJobIndex
-      );
+      return this.FILTERED_JOBS.slice(firstJobIndex, lastJobIndex);
     },
-    ...mapGetters([FILTERED_JOB_BY_ORGANIZATIONS]), // this creates FILTERED_JOB_BY_ORGANIZATIONS computed property
+    ...mapGetters([FILTERED_JOBS]), // this creates FILTERED_JOBS computed property
   },
 
   async mounted() {

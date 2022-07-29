@@ -55,6 +55,7 @@ export default {
     ...mapMutations([ADD_SELECTED_ORGANIZATIONS]),
     selectOrganization() {
       this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations); //first argument this will always be state so we pass only selectedOrganizations and it will be second argument
+      this.$router.push({ name: "JobResults" });
     },
   },
 };
