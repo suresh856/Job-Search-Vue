@@ -32,17 +32,16 @@
   </main>
 </template>
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, defineExpose } from "vue";
 import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables.js";
 import useCurrentPage from "@/composables/useCurrentPage";
 import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
 
 onMounted(useFetchJobsDispatch);
-
 const filteredJobs = useFilteredJobs();
 
 const currentPage = useCurrentPage();
-const maxPage = Math.ceil(filteredJobs.length / 10);
+const maxPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
 const { previousPage, nextPage } = usePreviousAndNextPages(
   currentPage,
   maxPage
@@ -54,43 +53,13 @@ const displayedJobs = computed(() => {
   const lastJobIndex = firstJobIndex + 10; // pageNumber * 10;
   return filteredJobs.value.slice(firstJobIndex, lastJobIndex);
 });
+
+defineExpose({ currentPage, previousPage, nextPage, displayedJobs });
 </script>
 <script>
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",
   components: { JobListing },
-  //above code is composition api below option api version of it
-  // computed: {
-  //   currentPage() {
-  //     const pageString = this.$route.query.page || "1";
-  //     return Number.parseInt(pageString);
-  //   },
-  //   previousPage() {
-  //     const previousPage = this.currentPage - 1;
-  //     const firstPage = 1;
-  //     return previousPage >= firstPage ? previousPage : undefined;
-  //   },
-  //   nextPage() {
-  //     const nextPage = this.currentPage + 1;
-  //     const maxPage = Math.ceil(this.FILTERED_JOBS.length / 10);
-  //     return nextPage <= maxPage ? nextPage : undefined;
-  //   },
-  //   displayedJobs() {
-  //     const pageNumber = this.currentPage;
-  //     const firstJobIndex = (pageNumber - 1) * 10;
-  //     const lastJobIndex = firstJobIndex + 10; // pageNumber * 10;
-  //     return this.FILTERED_JOBS.slice(firstJobIndex, lastJobIndex);
-  //   },
-  //   ...mapGetters([FILTERED_JOBS]), // this creates FILTERED_JOBS computed property
-  // },
-
-  // async mounted() {
-  //   // this.$store.dispatch(FETCH_JOBS); // to run actions in vue
-  //   this.FETCH_JOBS();
-  // },
-  // methods: {
-  //   ...mapActions([FETCH_JOBS]), // this will create FETCH_JOBS method on our component.
-  // },
 };
 </script>
