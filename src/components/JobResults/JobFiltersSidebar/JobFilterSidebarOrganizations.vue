@@ -26,7 +26,7 @@
     </div>
   </accordion>
 </template>
-
+<!-- similar code with composition API is in JobFilterSidebarjobTypes -->
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import {

@@ -36,7 +36,20 @@
     </form>
   </div>
 </template>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const role = ref("");
+const location = ref("");
+const router = useRouter();
+function searchForJobs() {
+  router.push({
+    name: "JobResults",
+    query: { role: role.value, location: location.value },
+  });
+}
+</script>
 <script>
 import ActionButton from "@/components/shared/ActionButton.vue";
 import TextInput from "@/components/shared/TextInput.vue";
@@ -46,19 +59,20 @@ export default {
     ActionButton,
     TextInput,
   },
-  data() {
-    return {
-      role: "",
-      location: "",
-    };
-  },
-  methods: {
-    searchForJobs() {
-      this.$router.push({
-        name: "JobResults",
-        query: { role: this.role, location: this.location },
-      });
-    },
-  },
+  // optional API code in setup composition API is used
+  // data() {
+  //   return {
+  //     role: "",
+  //     location: "",
+  //   };
+  // },
+  // methods: {
+  //   searchForJobs() {
+  //     this.$router.push({
+  //       name: "JobResults",
+  //       query: { role: this.role, location: this.location },
+  //     });
+  //   },
+  // },
 };
 </script>

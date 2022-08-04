@@ -1,16 +1,22 @@
 import { mount } from "@vue/test-utils";
 import SubNav from "@/components/navigation/SubNav.vue";
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+
+jest.mock("vue-router");
+jest.mock("vuex");
 
 describe("Subnav", () => {
-  const createConfig = (routeName, $store = {}) => ({
+  const createConfig = () => ({
     global: {
       // mocks used to mock real world object here. we can give our own object for real world object using mocks
-      mocks: {
-        $route: {
-          name: routeName,
-        },
-        $store,
-      },
+      //used with optional api
+      // mocks: {
+      //   $route: {
+      //     name: routeName,
+      //   },
+      //   $store,
+      // },
       // stubs replaces the component we want in testing. so that it will not search for component for test
       stubs: {
         FontAwesomeIcon: true,
@@ -19,13 +25,21 @@ describe("Subnav", () => {
   });
   describe("when user is on job page", () => {
     it("displays job count", () => {
-      const routeName = "JobResults";
-      const $store = {
+      useRoute.mockReturnValue({
+        name: "JobResults",
+      });
+      // const routeName = "JobResults";
+      useStore.mockReturnValue({
         getters: {
           FILTERED_JOBS: [{ id: 1 }, { id: 2 }],
         },
-      };
-      const wrapper = mount(SubNav, createConfig(routeName, $store));
+      });
+      // const $store = {
+      //   getters: {
+      //     FILTERED_JOBS: [{ id: 1 }, { id: 2 }],
+      //   },
+      // };
+      const wrapper = mount(SubNav, createConfig());
       const jobnCount = wrapper.find("[data-test='job-count']");
       expect(jobnCount.exists()).toBe(true);
       expect(jobnCount.text()).toMatch("2 jobs matched"); // 2 jobs coming from array we used above
@@ -49,8 +63,16 @@ describe("Subnav", () => {
       //   },
       // });
       //------------------------------------------------------------------------------------------------
-      const routeName = "Home";
-      const wrapper = mount(SubNav, createConfig(routeName));
+      useRoute.mockReturnValue({
+        name: "Home",
+      });
+      // const routeName = "JobResults";
+      useStore.mockReturnValue({
+        getters: {
+          FILTERED_JOBS: [{ id: 1 }, { id: 2 }],
+        },
+      });
+      const wrapper = mount(SubNav, createConfig());
       const jobnCount = wrapper.find("[data-test='job-count']");
       expect(jobnCount.exists()).toBe(false);
     });

@@ -19,31 +19,55 @@
     </div>
   </div>
 </template>
+<script setup>
+import { ref, computed, defineProps } from "vue";
 
+//props
+defineProps({
+  header: {
+    type: String,
+    required: true,
+  },
+});
+
+//Reactivity
+const isOpen = ref(false);
+
+//computed
+const caretIcon = computed(() => {
+  return isOpen.value ? ["fas", "angle-up"] : ["fas", "angle-down"];
+});
+
+//methods
+const open = () => {
+  isOpen.value = !isOpen.value;
+};
+</script>
 <script>
 export default {
   name: "Accordion",
-  props: {
-    header: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  computed: {
-    caretIcon() {
-      return this.isOpen ? ["fas", "angle-up"] : ["fas", "angle-down"];
-    },
-  },
+  //below is optional API code in setup script we have Composition API
+  // props: {
+  //   header: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
+  // data() {
+  //   return {
+  //     isOpen: false,
+  //   };
+  // },
+  // computed: {
+  //   caretIcon() {
+  //     return this.isOpen ? ["fas", "angle-up"] : ["fas", "angle-down"];
+  //   },
+  // },
 
-  methods: {
-    open() {
-      this.isOpen = !this.isOpen;
-    },
-  },
+  // methods: {
+  //   open() {
+  //     this.isOpen = !this.isOpen;
+  //   },
+  // },
 };
 </script>
