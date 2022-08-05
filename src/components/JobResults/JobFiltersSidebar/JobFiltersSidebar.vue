@@ -33,14 +33,11 @@
 import ActionButton from "@/components/shared/ActionButton.vue";
 import JobFilterSidebarCheckboxGroup from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarCheckboxGroup.vue";
 
-import {
-  useUniqueJobTypes,
-  useUniqueOrganizations,
-} from "@/store/composables.js";
+import { useUniqueJobTypes, useUniqueOrganizations } from "@/store/composables";
 import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_ORGANIZATIONS,
-} from "@/store/constants.js";
+} from "@/store/constants";
 
 export default {
   name: "JobFiltersSidebar",

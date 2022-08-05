@@ -29,8 +29,8 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
-import { useUniqueJobTypes } from "@/store/composables.js";
-import { ADD_SELECTED_JOB_TYPES } from "@/store/constants.js";
+import { useUniqueJobTypes } from "@/store/composables";
+import { ADD_SELECTED_JOB_TYPES } from "@/store/constants";
 
 const router = useRouter();
 const store = useStore();

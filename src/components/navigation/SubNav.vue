@@ -17,8 +17,8 @@
 // import { useRoute } from "vue-router";
 // import { computed } from "vue";
 // import { useStore } from "vuex";
-import useConfirmRoute from "@/composables/useConfirmRoute.js";
-import { useFilteredJobs } from "@/store/composables.js";
+import useConfirmRoute from "@/composables/useConfirmRoute";
+import { useFilteredJobs } from "@/store/composables";
 
 // const route = useRoute();
 // const onJobResultsPage = computed(() => route.name === "JobResults");

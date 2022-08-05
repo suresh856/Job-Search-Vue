@@ -33,7 +33,7 @@
 </template>
 <script setup>
 import { computed, onMounted, defineExpose } from "vue";
-import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables.js";
+import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
 import useCurrentPage from "@/composables/useCurrentPage";
 import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
 
