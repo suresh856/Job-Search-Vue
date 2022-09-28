@@ -75,16 +75,9 @@ export default defineComponent({
         "h-32": this.isLoggedIn,
       };
     },
-    // isLoggedIn() {
-    //   return this.$store.state.isLoggedIn;
-    // },
-    // above code can be simplified by helper function below. Other syntax aslo available for helper function
-    ...mapState(["isLoggedIn"]), // pass rest of state object names here.
+    ...mapState(["isLoggedIn"]),
   },
   methods: {
-    // LOGIN_USER() {
-    //   this.$store.commit(LOGIN_USER);
-    // },
     ...mapMutations(["LOGIN_USER"]), // it will give this.LOGIN_USER method in our component. we can pass more mutations names in array to get them also.
   },
 });

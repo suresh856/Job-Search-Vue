@@ -59,20 +59,5 @@ export default {
     ActionButton,
     TextInput,
   },
-  // optional API code in setup composition API is used
-  // data() {
-  //   return {
-  //     role: "",
-  //     location: "",
-  //   };
-  // },
-  // methods: {
-  //   searchForJobs() {
-  //     this.$router.push({
-  //       name: "JobResults",
-  //       query: { role: this.role, location: this.location },
-  //     });
-  //   },
-  // },
 };
 </script>

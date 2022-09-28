@@ -50,7 +50,7 @@ const { previousPage, nextPage } = usePreviousAndNextPages(
 const displayedJobs = computed(() => {
   const pageNumber = currentPage.value;
   const firstJobIndex = (pageNumber - 1) * 10;
-  const lastJobIndex = firstJobIndex + 10; // pageNumber * 10;
+  const lastJobIndex = firstJobIndex + 10;
   return filteredJobs.value.slice(firstJobIndex, lastJobIndex);
 });
 

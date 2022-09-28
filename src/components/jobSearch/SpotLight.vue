@@ -33,17 +33,5 @@ interface Spotlight {
 }
 export default {
   name: "SpotLight",
-  //this is option api code above one is composition api
-  // data() {
-  //   return {
-  //     spotlights: [],
-  //   };
-  // },
-  // async mounted() {
-  //   const baseUrl = process.env.VUE_APP_API_URL;
-  //   const endpoint = `${baseUrl}/spotlights`;
-  //   const response = await axios.get(endpoint);
-  //   this.spotlights = response.data;
-  // },
 };
 </script>

@@ -13,9 +13,6 @@
           />
         </div>
       </div>
-      <!-- <job-filter-sidebar-organizations />
-      <job-filter-sidebar-job-types /> -->
-      <!-- both above used before checkbox vue component check them for some vue concepts -->
       <job-filter-sidebar-checkbox-group
         header="Job type"
         :unique-values="uniqueJobTypes"

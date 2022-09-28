@@ -55,24 +55,5 @@ export default {
     HeadLineImage,
     SpotLight,
   },
-  // BASIC LIFE CYCLE HOOKS IN VUE TO USE
-  // beforeCreate() {
-  //   console.log("Component is about to be created");
-  // },
-  // created() {
-  //   console.log("Component has been created");
-  // },
-  // beforeMount() {
-  //   console.log("Component is about to be mounted");
-  // },
-  // mounted() {
-  //   console.log("Component has been mounted in the DOM");
-  // },
-  // beforeUpdate() {
-  //   console.log("before any update");
-  // },
-  // updated() {
-  //   console.log("after updated");
-  // },
 };
 </script>
