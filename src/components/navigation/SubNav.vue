@@ -13,7 +13,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 // import { useRoute } from "vue-router";
 // import { computed } from "vue";
 // import { useStore } from "vuex";
@@ -27,7 +27,7 @@ const FILTERED_JOBS = useFilteredJobs();
 // const store = useStore();
 // const FILTERED_JOBS = computed(() => store.getters.FILTERED_JOBS);
 </script>
-<script>
+<script lang="ts">
 // import { mapGetters } from "vuex";
 // import { FILTERED_JOBS } from "@/store/constants";
 export default {

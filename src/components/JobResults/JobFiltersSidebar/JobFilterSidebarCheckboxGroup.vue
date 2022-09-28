@@ -21,18 +21,18 @@
   </accordion>
 </template>
 <!-- similar code with optional API is in JobFilterSidebarOrganizations -->
-<script setup>
-import { ref, defineProps } from "vue";
+<script setup lang="ts">
+import { ref, defineProps, PropType } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-
+import { key } from "@/store/index";
 var props = defineProps({
   header: {
     type: String,
     required: true,
   },
   uniqueValues: {
-    type: Set,
+    type: Set as PropType<Set<string>>,
     required: true,
   },
   mutation: {
@@ -42,15 +42,15 @@ var props = defineProps({
 });
 
 const router = useRouter();
-const store = useStore();
-const selectedValues = ref([]);
+const store = useStore(key);
+const selectedValues = ref<string[]>([]);
 
 const selectValue = () => {
   store.commit(props.mutation, selectedValues.value);
   router.push({ name: "JobResults" });
 };
 </script>
-<script>
+<script lang="ts">
 import Accordion from "@/components/shared/Accordion.vue";
 export default {
   name: "JobFilterSidebarCheckboxGroup",

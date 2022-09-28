@@ -1,7 +1,7 @@
-const nextElementInList = (list, value) => {
+const nextElementInList = <T>(list: T[], value: T): T => {
   const currentValueIndex = list.indexOf(value);
   const nextValueIndex = (currentValueIndex + 1) % list.length;
-  const nextAction = list[nextValueIndex];
-  return nextAction;
+  const nextValue = list[nextValueIndex];
+  return nextValue;
 };
 export default nextElementInList;

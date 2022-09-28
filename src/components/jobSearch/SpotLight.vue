@@ -9,22 +9,28 @@
     </li>
   </ul>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
-const spotlights = ref([]);
+const spotlights = ref<Spotlight[]>([]);
 
 const getSpotlights = async () => {
   const baseUrl = process.env.VUE_APP_API_URL;
   const endpoint = `${baseUrl}/spotlights`;
-  const response = await axios.get(endpoint);
+  const response = await axios.get<Spotlight[]>(endpoint);
   spotlights.value = response.data;
 };
 
 onMounted(getSpotlights);
 </script>
-<script>
+<script lang="ts">
+interface Spotlight {
+  id: number;
+  img: string;
+  title: string;
+  description: string;
+}
 export default {
   name: "SpotLight",
   //this is option api code above one is composition api

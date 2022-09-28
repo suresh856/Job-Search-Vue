@@ -1,8 +1,9 @@
 <template>
   <img :src="imageLink" class="w-8 h-8 object-contain rounded-3xl" />
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "ProfileImage",
   data() {
     return {
@@ -12,5 +13,5 @@ export default {
         "https://png.pngtree.com/png-clipart/20190614/original/pngtree-male-student-icon-png-image_3728104.jpg",
     };
   },
-};
+});
 </script>

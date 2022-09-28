@@ -36,7 +36,7 @@
     </form>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -50,7 +50,7 @@ function searchForJobs() {
   });
 }
 </script>
-<script>
+<script lang="ts">
 import ActionButton from "@/components/shared/ActionButton.vue";
 import TextInput from "@/components/shared/TextInput.vue";
 export default {

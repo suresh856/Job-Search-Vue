@@ -42,7 +42,7 @@
     </spot-light>
   </main>
 </template>
-<script>
+<script lang="ts">
 import HeadLine from "@/components/jobSearch/HeadLine.vue";
 import JobSearchForm from "@/components/jobSearch/JobSearchForm.vue";
 import HeadLineImage from "@/components/jobSearch/HeadLineImage.vue";

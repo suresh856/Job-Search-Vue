@@ -10,6 +10,9 @@ jest.mock("vue-router");
 import { useUniqueJobTypes } from "@/store/composables";
 jest.mock("@/store/composables");
 
+const useUniqueJobTypesMock = useUniqueJobTypes as jest.Mock;
+const useRouterMock = useRouter as jest.Mock;
+const useStoreMock = useStore as jest.Mock;
 describe("JobFiltersSidebarJobTypes", () => {
   const createConfig = () => ({
     global: {
@@ -20,8 +23,8 @@ describe("JobFiltersSidebarJobTypes", () => {
   });
 
   it("renders unique list of job types for filtering jobs", async () => {
-    useUniqueJobTypes.mockReturnValue(new Set(["Full-time", "Part-time"]));
-    useRouter.mockReturnValue({ push: jest.fn() });
+    useUniqueJobTypesMock.mockReturnValue(new Set(["Full-time", "Part-time"]));
+    useRouterMock.mockReturnValue({ push: jest.fn() });
     const wrapper = mount(JobFiltersSidebarJobTypes, createConfig());
     const clickableArea = wrapper.find("[data-test='clickable-area']");
     await clickableArea.trigger("click");
@@ -33,28 +36,32 @@ describe("JobFiltersSidebarJobTypes", () => {
   describe("when user clicks checkbox", () => {
     it("communicates that user has selected checkbox for job type", async () => {
       const commit = jest.fn();
-      useUniqueJobTypes.mockReturnValue(new Set(["Full-time", "Part-time"]));
-      useStore.mockReturnValue({ commit });
-      useRouter.mockReturnValue({ push: jest.fn() });
+      useUniqueJobTypesMock.mockReturnValue(
+        new Set(["Full-time", "Part-time"])
+      );
+      useStoreMock.mockReturnValue({ commit });
+      useRouterMock.mockReturnValue({ push: jest.fn() });
       const wrapper = mount(JobFiltersSidebarJobTypes, createConfig());
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const fullTimeInput = wrapper.find("[data-test='Full-time']");
-      await fullTimeInput.setChecked();
+      await fullTimeInput.setValue(true);
       expect(commit).toHaveBeenCalledWith("ADD_SELECTED_JOB_TYPES", [
         "Full-time",
       ]);
     });
 
     it("navigates user to job results page to see fresh batch of filtered jobs", async () => {
-      useUniqueJobTypes.mockReturnValue(new Set(["Full-time", "Part-time"]));
+      useUniqueJobTypesMock.mockReturnValue(
+        new Set(["Full-time", "Part-time"])
+      );
       const push = jest.fn();
-      useRouter.mockReturnValue({ push });
+      useRouterMock.mockReturnValue({ push });
       const wrapper = mount(JobFiltersSidebarJobTypes, createConfig());
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const fullTimeInput = wrapper.find("[data-test='Full-time']");
-      await fullTimeInput.setChecked();
+      await fullTimeInput.setValue(true);
 
       expect(push).toHaveBeenCalledWith({ name: "JobResults" });
     });

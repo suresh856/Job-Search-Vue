@@ -19,7 +19,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref, computed, defineProps } from "vue";
 
 //props
@@ -43,8 +43,9 @@ const open = () => {
   isOpen.value = !isOpen.value;
 };
 </script>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "Accordion",
   //below is optional API code in setup script we have Composition API
   // props: {
@@ -69,5 +70,5 @@ export default {
   //     this.isOpen = !this.isOpen;
   //   },
   // },
-};
+});
 </script>

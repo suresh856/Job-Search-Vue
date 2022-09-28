@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import MainNav from "@/components/navigation/MainNav.vue";
 
 export default {

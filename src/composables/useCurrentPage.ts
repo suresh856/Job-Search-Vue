@@ -5,7 +5,7 @@ const useCurrentPage = () => {
   const route = useRoute();
   return computed(() => {
     const pageString = route.query.page || "1";
-    return Number.parseInt(pageString);
+    return Number.parseInt(pageString as string);
   });
 };
 

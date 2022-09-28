@@ -11,18 +11,28 @@
     <h2 class="text-3xl font-light">Find your next job at Suresh's Corp.</h2>
   </section>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import nextElementInList from "@/Utils/nextElementInList";
-export default {
+
+interface ActionClasses {
+  [x: string]: boolean;
+}
+interface Data {
+  action: string;
+  interval: number | undefined;
+}
+
+export default defineComponent({
   name: "HeadLine",
-  data() {
+  data(): Data {
     return {
       action: "Build",
-      interval: null,
+      interval: undefined,
     };
   },
   computed: {
-    actionClasses() {
+    actionClasses(): ActionClasses {
       return {
         // build: this.action === "Build",
         // create: this.action === "Create",
@@ -46,7 +56,7 @@ export default {
       }, 4000);
     },
   },
-};
+});
 </script>
 
 <style scoped>

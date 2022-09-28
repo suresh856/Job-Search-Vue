@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarOrganizations.vue";
 
 describe("JobFiltersSidebarOrganizations", () => {
-  const createConfig = ($store, $router) => ({
+  const createConfig = ($store: any, $router: any) => ({
     global: {
       mocks: {
         $store,
@@ -49,7 +49,7 @@ describe("JobFiltersSidebarOrganizations", () => {
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const googleInput = wrapper.find("[data-test='Google']");
-      await googleInput.setChecked();
+      await googleInput.setValue(true);
       expect(commit).toHaveBeenCalledWith("ADD_SELECTED_ORGANIZATIONS", [
         "Google",
       ]);
@@ -71,7 +71,7 @@ describe("JobFiltersSidebarOrganizations", () => {
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const googleInput = wrapper.find("[data-test='Google']");
-      await googleInput.setChecked();
+      await googleInput.setValue(true);
       expect(push).toHaveBeenCalledWith({ name: "JobResults" });
     });
   });

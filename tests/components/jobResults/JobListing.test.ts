@@ -1,5 +1,7 @@
 import { mount, RouterLinkStub } from "@vue/test-utils";
 import JobListing from "@/components/JobResults/JobListing.vue";
+import { createJob } from "../../store/utils";
+import { Job } from "@/api/types";
 
 describe("JobListing", () => {
   const createJobProps = (jobProps = {}) => ({
@@ -7,7 +9,7 @@ describe("JobListing", () => {
     organization: "AirBnB",
     ...jobProps,
   });
-  const createConfig = (jobProps) => ({
+  const createConfig = (jobProps: Job) => ({
     props: {
       job: {
         ...jobProps,
@@ -21,18 +23,18 @@ describe("JobListing", () => {
     },
   });
   it("renders job title", () => {
-    const jobProps = createJobProps({ title: "Vue Developer" });
+    const jobProps = createJob({ title: "Vue Developer" });
     const wrapper = mount(JobListing, createConfig(jobProps));
     expect(wrapper.text()).toMatch("Vue Developer");
   });
   it("renders organization", () => {
-    const jobProps = createJobProps({ organization: "test" });
+    const jobProps = createJob({ organization: "test" });
     const wrapper = mount(JobListing, createConfig(jobProps));
     expect(wrapper.text()).toMatch("test");
   });
   // write test for location, qualifications also
   it("links to individual jobs page", () => {
-    const jobProps = createJobProps({ id: 15 });
+    const jobProps = createJob({ id: 15 });
     const wrapper = mount(JobListing, createConfig(jobProps));
     const jobPageLink = wrapper.findComponent(RouterLinkStub);
     expect(jobPageLink.props("to")).toBe("/jobs/results/15");

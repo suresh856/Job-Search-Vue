@@ -3,7 +3,7 @@
     {{ text }}
   </button>
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed, defineProps } from "vue";
 const props = defineProps({
   text: {
@@ -14,7 +14,7 @@ const props = defineProps({
     type: String,
     required: false,
     default: "primary",
-    validator(value) {
+    validator(value: string) {
       // this method must return boolean value only
       return ["primary", "secondary"].includes(value);
     },
@@ -24,7 +24,7 @@ const buttonClass = computed(() => {
   return { [props.type]: true };
 });
 </script>
-<script>
+<script lang="ts">
 export default {
   name: "ActionButton",
   // we can pass props in kebab case and use in pascal case here. Vue takes care of it.We can use kebab case here as well. it will work fine.

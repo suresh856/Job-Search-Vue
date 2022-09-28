@@ -13,7 +13,7 @@
           <ul class="flex h-full p-0 m-0 list-none">
             <li
               v-for="menuItem in menuItems"
-              :key="menuItem"
+              :key="menuItem.text"
               class="h-full ml-9 first:ml-0"
               data-test="main-nav-list-item"
             >
@@ -41,12 +41,13 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { mapState, mapMutations } from "vuex";
 import ActionButton from "@/components/shared/ActionButton.vue";
 import ProfileImage from "@/components/navigation/ProfileImage.vue";
 import SubNav from "@/components/navigation/SubNav.vue";
-export default {
+export default defineComponent({
   name: "MainNav",
   components: {
     ActionButton,
@@ -86,5 +87,5 @@ export default {
     // },
     ...mapMutations(["LOGIN_USER"]), // it will give this.LOGIN_USER method in our component. we can pass more mutations names in array to get them also.
   },
-};
+});
 </script>

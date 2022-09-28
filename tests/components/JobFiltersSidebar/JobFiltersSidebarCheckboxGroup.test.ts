@@ -7,6 +7,8 @@ jest.mock("vue-router");
 
 import JobFilterSidebarCheckboxGroup from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarCheckboxGroup.vue";
 
+const useStoreMock = useStore as jest.Mock;
+const useRouterMock = useRouter as jest.Mock;
 describe("JobFilterSidebarCheckboxGroup", () => {
   const createConfig = (props = {}) => ({
     global: {
@@ -38,8 +40,8 @@ describe("JobFilterSidebarCheckboxGroup", () => {
   describe("when user clicks checkbox", () => {
     it("communicates that user has selected checkbox for value", async () => {
       const commit = jest.fn();
-      useStore.mockReturnValue({ commit });
-      useRouter.mockReturnValue({ push: jest.fn() });
+      useStoreMock.mockReturnValue({ commit });
+      useRouterMock.mockReturnValue({ push: jest.fn() });
       const props = {
         mutation: "SOME_MUTATION",
         uniqueValues: new Set(["Full-time"]),
@@ -48,14 +50,14 @@ describe("JobFilterSidebarCheckboxGroup", () => {
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const fullTimeInput = wrapper.find("[data-test='Full-time']");
-      await fullTimeInput.setChecked();
+      await fullTimeInput.setValue(true);
       expect(commit).toHaveBeenCalledWith("SOME_MUTATION", ["Full-time"]);
     });
 
     it("navigates user to job results page to see fresh batch of filtered jobs", async () => {
-      useStore.mockReturnValue({ commit: jest.fn() });
+      useStoreMock.mockReturnValue({ commit: jest.fn() });
       const push = jest.fn();
-      useRouter.mockReturnValue({ push });
+      useRouterMock.mockReturnValue({ push });
       const props = {
         uniqueValues: new Set(["Full-time"]),
       };
@@ -63,7 +65,7 @@ describe("JobFilterSidebarCheckboxGroup", () => {
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const fullTimeInput = wrapper.find("[data-test='Full-time']");
-      await fullTimeInput.setChecked();
+      await fullTimeInput.setValue(true);
 
       expect(push).toHaveBeenCalledWith({ name: "JobResults" });
     });

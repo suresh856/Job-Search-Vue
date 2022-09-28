@@ -1,9 +1,8 @@
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router";
-import store from "@/store";
 import "@/assets/tailwind.css";
-
+import store, { key } from "@/store";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -21,7 +20,7 @@ library.add(faAngleDown);
 library.add(faAngleUp);
 
 createApp(App)
-  .use(store)
+  .use(store, key)
   .use(router)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

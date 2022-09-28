@@ -3,10 +3,12 @@ jest.mock("axios");
 
 import getJobs from "@/api/getJobs";
 import { flushPromises } from "@vue/test-utils";
-
+const axiosGetMock = axios.get as jest.Mock;
 describe("getJobs", () => {
   beforeEach(() => {
-    axios.get.mockResolvedValue({ data: [{ id: 1, title: "Java engineer" }] }); // to mock get reesponse
+    axiosGetMock.mockResolvedValue({
+      data: [{ id: 1, title: "Java engineer" }],
+    }); // to mock get reesponse
   });
   it("fetches jobs that candidates can apply to", async () => {
     await getJobs();

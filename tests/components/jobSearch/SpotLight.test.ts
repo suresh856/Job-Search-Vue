@@ -4,9 +4,11 @@ jest.mock("axios");
 
 import SpotLight from "@/components/jobSearch/SpotLight.vue";
 
+const axiosGetMock = axios.get as jest.Mock;
+
 describe("SpotLight", () => {
   it("provides img attribute to parent component", async () => {
-    axios.get.mockResolvedValue({
+    axiosGetMock.mockResolvedValue({
       data: [
         {
           img: "test img",
@@ -27,7 +29,7 @@ describe("SpotLight", () => {
   });
 
   it("provides title attribute to parent component", async () => {
-    axios.get.mockResolvedValue({
+    axiosGetMock.mockResolvedValue({
       data: [
         {
           img: "test img",
@@ -48,7 +50,7 @@ describe("SpotLight", () => {
   });
 
   it("provides description attribute to parent component", async () => {
-    axios.get.mockResolvedValue({
+    axiosGetMock.mockResolvedValue({
       data: [
         {
           img: "test img",

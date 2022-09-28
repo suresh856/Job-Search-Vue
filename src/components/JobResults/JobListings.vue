@@ -31,7 +31,7 @@
     </div>
   </main>
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, defineExpose } from "vue";
 import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
 import useCurrentPage from "@/composables/useCurrentPage";
@@ -56,7 +56,7 @@ const displayedJobs = computed(() => {
 
 defineExpose({ currentPage, previousPage, nextPage, displayedJobs });
 </script>
-<script>
+<script lang="ts">
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",

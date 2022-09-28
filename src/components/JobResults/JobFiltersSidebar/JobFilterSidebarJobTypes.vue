@@ -24,16 +24,16 @@
     </div>
   </accordion>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-
+import { key } from "@/store";
 import { useUniqueJobTypes } from "@/store/composables";
 import { ADD_SELECTED_JOB_TYPES } from "@/store/constants";
 
 const router = useRouter();
-const store = useStore();
+const store = useStore(key);
 const selectedJobTypes = ref([]);
 
 const uniqueJobTypes = useUniqueJobTypes();
@@ -43,7 +43,7 @@ const selectjobType = () => {
   router.push({ name: "JobResults" });
 };
 </script>
-<script>
+<script lang="ts">
 import Accordion from "@/components/shared/Accordion.vue";
 export default {
   name: "JobFilterSidebarJobTypes",
