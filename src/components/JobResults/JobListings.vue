@@ -33,11 +33,16 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, defineExpose } from "vue";
-import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
+import {
+  useFilteredJobs,
+  useFetchJobsDispatch,
+  useFetchDegreesDispatch,
+} from "@/store/composables";
 import useCurrentPage from "@/composables/useCurrentPage";
 import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
 
 onMounted(useFetchJobsDispatch);
+onMounted(useFetchDegreesDispatch);
 const filteredJobs = useFilteredJobs();
 
 const currentPage = useCurrentPage();

@@ -6,6 +6,7 @@ import {
   useUniqueJobTypes,
   useUniqueOrganizations,
   useFetchJobsDispatch,
+  useUniqueDegrees,
 } from "@/store/composables";
 
 const useStoreMock = useStore as jest.Mock;
@@ -34,6 +35,19 @@ describe("composables", () => {
 
       const result = useUniqueJobTypes();
       expect(result.value).toEqual(new Set(["Full-time"]));
+    });
+  });
+
+  describe("useUniqueDegrees", () => {
+    it("retrieves unique degrees from store", () => {
+      useStoreMock.mockReturnValue({
+        getters: {
+          UNIQUE_DEGREES: new Set(["degree"]),
+        },
+      });
+
+      const result = useUniqueDegrees();
+      expect(result.value).toEqual(new Set(["degree"]));
     });
   });
 
