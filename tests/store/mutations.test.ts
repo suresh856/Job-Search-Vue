@@ -56,4 +56,17 @@ describe("mutations", () => {
       ]);
     });
   });
+  describe("CLEAR_USER_JOB_FILTER_SELECTION", () => {
+    it("it removes all job filters that user has chosen", () => {
+      const startingState = createState({
+        selectedDegrees: ["degree"],
+        selectedJobTypes: ["part-time"],
+        selectedOrganizations: ["org", "org2"],
+      });
+      mutations.CLEAR_USER_JOB_FILTER_SELECTIONS(startingState);
+      expect(startingState.selectedDegrees).toEqual([]);
+      expect(startingState.selectedJobTypes).toEqual([]);
+      expect(startingState.selectedOrganizations).toEqual([]);
+    });
+  });
 });

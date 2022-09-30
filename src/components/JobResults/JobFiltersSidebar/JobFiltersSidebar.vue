@@ -10,6 +10,7 @@
             text="Clear Filters"
             type="secondary"
             class="rounded"
+            @click="clearUserJobSelectionFilter"
           />
         </div>
       </div>
@@ -47,7 +48,10 @@ import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_ORGANIZATIONS,
   ADD_SELECTED_DEGREES,
+  CLEAR_USER_JOB_FILTER_SELECTIONS,
 } from "@/store/constants";
+import { useStore } from "vuex";
+import { key } from "@/store";
 
 export default defineComponent({
   name: "JobFiltersSidebar",
@@ -58,9 +62,13 @@ export default defineComponent({
   },
   //setup() method is like script setup
   setup() {
+    const store = useStore(key);
     const uniqueJobTypes = useUniqueJobTypes();
     const uniqueOrganizations = useUniqueOrganizations();
     const uniqueDegrees = useUniqueDegrees();
+    const clearUserJobSelectionFilter = () => {
+      store.commit(CLEAR_USER_JOB_FILTER_SELECTIONS);
+    };
     return {
       uniqueJobTypes,
       uniqueOrganizations,
@@ -68,6 +76,7 @@ export default defineComponent({
       ADD_SELECTED_JOB_TYPES,
       ADD_SELECTED_ORGANIZATIONS,
       ADD_SELECTED_DEGREES,
+      clearUserJobSelectionFilter,
     };
   },
 });

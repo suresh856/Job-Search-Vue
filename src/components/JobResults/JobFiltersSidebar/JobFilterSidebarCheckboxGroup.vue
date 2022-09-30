@@ -26,6 +26,7 @@ import { ref, defineProps, PropType } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { key } from "@/store/index";
+import { CLEAR_USER_JOB_FILTER_SELECTIONS } from "@/store/constants";
 var props = defineProps({
   header: {
     type: String,
@@ -44,6 +45,12 @@ var props = defineProps({
 const router = useRouter();
 const store = useStore(key);
 const selectedValues = ref<string[]>([]);
+
+store.subscribe((mutation) => {
+  if (mutation.type === CLEAR_USER_JOB_FILTER_SELECTIONS) {
+    selectedValues.value = [];
+  }
+});
 
 const selectValue = () => {
   store.commit(props.mutation, selectedValues.value);
