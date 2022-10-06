@@ -24,6 +24,11 @@ const routes = [
     name: "Teams",
     component: TeamsView,
   },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("@/components/shared/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({
