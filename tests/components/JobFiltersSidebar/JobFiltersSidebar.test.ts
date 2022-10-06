@@ -18,15 +18,15 @@ describe("JobFiltersSidebar", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  // it("reads query params to filter initial jobs for user", () => {
-  //   const commit = jest.fn();
-  //   useStoreMock.mockReturnValue({ commit });
-  //   useRouteMock.mockReturnValue({
-  //     query: {
-  //       role: "Vue",
-  //     },
-  //   });
-  //   shallowMount(JobFiltersSidebar);
-  //   expect(commit).toHaveBeenCalledWith("UPDATE_SKILLS_SEARCH_TERM", "Vue");
-  // });
+  it("reads query params to filter initial jobs for user", () => {
+    const commit = jest.fn();
+    useStoreMock.mockReturnValue({ commit });
+    useRouteMock.mockReturnValue({
+      query: {
+        role: "Vue",
+      },
+    });
+    shallowMount(JobFiltersSidebar);
+    expect(commit).toHaveBeenCalledWith("UPDATE_SKILLS_SEARCH_TERM", "Vue");
+  });
 });
