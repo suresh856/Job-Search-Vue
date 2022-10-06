@@ -27,4 +27,8 @@ describe("state", () => {
     const startingState = state();
     expect(startingState.selectedDegrees).toEqual([]);
   });
+  it("stores user's search term for search and qalification", () => {
+    const startingState = state();
+    expect(startingState.skillsSearchTerm).toEqual("");
+  });
 });

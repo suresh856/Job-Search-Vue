@@ -1,78 +1,20 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
+
+import { useUniqueOrganizations } from "@/store/composables";
+jest.mock("@/store/composables");
+const useUniqueOrganizationsMock = useUniqueOrganizations as jest.Mock;
+
 import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarOrganizations.vue";
 
 describe("JobFiltersSidebarOrganizations", () => {
-  const createConfig = ($store: any, $router: any) => ({
-    global: {
-      mocks: {
-        $store,
-        $router,
-      },
-      stubs: {
-        FontAwesomeIcon: true,
-      },
-    },
-  });
-
-  it("renders unique list of organizations for filtering jobs", async () => {
-    const $store = {
-      getters: {
-        UNIQUE_ORGANIZATIONS: new Set(["Google", "Amazon"]),
-      },
-    };
-    const $router = { push: jest.fn() };
-    const wrapper = mount(
-      JobFiltersSidebarOrganizations,
-      createConfig($store, $router)
-    );
-    const clickableArea = wrapper.find("[data-test='clickable-area']");
-    await clickableArea.trigger("click");
-    const organizationLabels = wrapper.findAll("[data-test='organization']");
-    const organizations = organizationLabels.map((node) => node.text());
-    expect(organizations).toEqual(["Google", "Amazon"]);
-  });
-
-  describe("when user clicks checkbox", () => {
-    it("communicates that user has selected checkbox for organizatin", async () => {
-      const commit = jest.fn();
-      const $store = {
-        getters: {
-          UNIQUE_ORGANIZATIONS: new Set(["Google", "Amazon"]),
-        },
-        commit,
-      };
-      const $router = { push: jest.fn() };
-      const wrapper = mount(
-        JobFiltersSidebarOrganizations,
-        createConfig($store, $router)
-      );
-      const clickableArea = wrapper.find("[data-test='clickable-area']");
-      await clickableArea.trigger("click");
-      const googleInput = wrapper.find("[data-test='Google']");
-      await googleInput.setValue(true);
-      expect(commit).toHaveBeenCalledWith("ADD_SELECTED_ORGANIZATIONS", [
-        "Google",
-      ]);
+  it("allows user to filter jobs by organizations", () => {
+    useUniqueOrganizationsMock.mockReturnValue(new Set(["AirBnB"]));
+    const wrapper = shallowMount(JobFiltersSidebarOrganizations);
+    const organizationsFilter = wrapper.findComponent({
+      name: "JobFilterSidebarCheckboxGroup",
     });
-
-    it("navigates user to job results page to see fresh batch of filtered jobs", async () => {
-      const $store = {
-        getters: {
-          UNIQUE_ORGANIZATIONS: new Set(["Google", "Amazon"]),
-        },
-        commit: jest.fn(),
-      };
-      const push = jest.fn();
-      const $router = { push };
-      const wrapper = mount(
-        JobFiltersSidebarOrganizations,
-        createConfig($store, $router)
-      );
-      const clickableArea = wrapper.find("[data-test='clickable-area']");
-      await clickableArea.trigger("click");
-      const googleInput = wrapper.find("[data-test='Google']");
-      await googleInput.setValue(true);
-      expect(push).toHaveBeenCalledWith({ name: "JobResults" });
-    });
+    const { uniqueValues, mutation } = organizationsFilter.props();
+    expect(uniqueValues).toEqual(new Set(["AirBnB"]));
+    expect(mutation).toBe("ADD_SELECTED_ORGANIZATIONS");
   });
 });

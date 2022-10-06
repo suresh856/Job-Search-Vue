@@ -69,4 +69,13 @@ describe("mutations", () => {
       expect(startingState.selectedOrganizations).toEqual([]);
     });
   });
+  describe("UPDATE_SKILLS_SEARCH_TERM", () => {
+    it("it recieves search term for skills and qualification", () => {
+      const startingState = createState({
+        skillsSearchTerm: "",
+      });
+      mutations.UPDATE_SKILLS_SEARCH_TERM(startingState, "Vue");
+      expect(startingState.skillsSearchTerm).toEqual("Vue");
+    });
+  });
 });

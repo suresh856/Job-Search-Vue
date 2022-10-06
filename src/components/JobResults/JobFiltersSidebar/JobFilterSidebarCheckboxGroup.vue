@@ -1,24 +1,22 @@
 <template>
-  <accordion :header="header">
-    <div class="mt-5">
-      <fieldset>
-        <ul class="flex flex-row flex-wrap">
-          <li v-for="value in uniqueValues" :key="value" class="w-1/2 h-8">
-            <input
-              :id="value"
-              v-model="selectedValues"
-              :value="value"
-              type="checkbox"
-              class="mr-3"
-              :data-test="value"
-              @change="selectValue"
-            />
-            <label :for="value" data-test="value">{{ value }}</label>
-          </li>
-        </ul>
-      </fieldset>
-    </div>
-  </accordion>
+  <div class="mt-5">
+    <fieldset>
+      <ul class="flex flex-row flex-wrap">
+        <li v-for="value in uniqueValues" :key="value" class="w-1/2 h-8">
+          <input
+            :id="value"
+            v-model="selectedValues"
+            :value="value"
+            type="checkbox"
+            class="mr-3"
+            :data-test="value"
+            @change="selectValue"
+          />
+          <label :for="value" data-test="value">{{ value }}</label>
+        </li>
+      </ul>
+    </fieldset>
+  </div>
 </template>
 <!-- similar code with optional API is in JobFilterSidebarOrganizations -->
 <script setup lang="ts">
@@ -28,10 +26,6 @@ import { useRouter } from "vue-router";
 import { key } from "@/store/index";
 import { CLEAR_USER_JOB_FILTER_SELECTIONS } from "@/store/constants";
 var props = defineProps({
-  header: {
-    type: String,
-    required: true,
-  },
   uniqueValues: {
     type: Set as PropType<Set<string>>,
     required: true,
@@ -58,11 +52,7 @@ const selectValue = () => {
 };
 </script>
 <script lang="ts">
-import Accordion from "@/components/shared/Accordion.vue";
 export default {
   name: "JobFilterSidebarCheckboxGroup",
-  components: {
-    Accordion,
-  },
 };
 </script>
