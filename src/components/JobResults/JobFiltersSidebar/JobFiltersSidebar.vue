@@ -7,6 +7,9 @@
       <accordion header="Skills and Qualification">
         <job-filter-sidebar-skills />
       </accordion>
+      <accordion header="Location">
+        <job-filter-sidebar-locations />
+      </accordion>
       <accordion header="Job Types">
         <job-filter-sidebar-job-types />
       </accordion>
@@ -27,7 +30,8 @@ import JobFilterSidebarDegrees from "@/components/JobResults/JobFiltersSidebar/J
 import JobFilterSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarOrganizations.vue";
 import JobFilterSidebarJobTypes from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarJobTypes.vue";
 import JobFilterSidebarPrompt from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarPrompt.vue";
-import JobFilterSidebarSkills from "./JobFilterSidebarSkills.vue";
+import JobFilterSidebarSkills from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarSkills.vue";
+import JobFilterSidebarLocations from "@/components/JobResults/JobFiltersSidebar/JobFilterSidebarLocations.vue";
 
 export default defineComponent({
   name: "JobFiltersSidebar",
@@ -38,6 +42,7 @@ export default defineComponent({
     JobFilterSidebarJobTypes,
     JobFilterSidebarPrompt,
     JobFilterSidebarSkills,
+    JobFilterSidebarLocations,
   },
 });
 </script>

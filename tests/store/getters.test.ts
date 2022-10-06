@@ -111,11 +111,13 @@ describe("getters", () => {
       const INCLUDE_JOB_BY_JOB_TYPE = jest.fn().mockReturnValue(true);
       const INCLUDE_JOB_BY_DEGREE = jest.fn().mockReturnValue(true);
       const INCLUDE_JOB_BY_SKILLS = jest.fn().mockReturnValue(true);
+      const INCLUDE_JOB_BY_LOCATION = jest.fn().mockReturnValue(true);
       const mockGetters = {
         INCLUDE_JOB_BY_ORGANIZATION,
         INCLUDE_JOB_BY_JOB_TYPE,
         INCLUDE_JOB_BY_DEGREE,
         INCLUDE_JOB_BY_SKILLS,
+        INCLUDE_JOB_BY_LOCATION,
       };
       const job = createJob({ title: "Best job ever" });
       const state = createState({ jobs: [job] });
