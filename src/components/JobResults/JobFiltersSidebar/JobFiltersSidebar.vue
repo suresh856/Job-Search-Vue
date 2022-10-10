@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col p-4 bg-white border-r border-solid border-brand-gray-1 w-96"
+    class="flex flex-col p-4 bg-white border-r border-solid border-brand-gray-1 min-w-96 w-1/5 h-full"
   >
     <section class="pb-5">
       <job-filter-sidebar-prompt />

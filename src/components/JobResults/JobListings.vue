@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-auto p-8 bg-brand-gray-2">
+  <main class="bg-brand-gray-2 flex-auto p-8 w-4/5">
     <div v-if="displayedJobs.length === 0">
       <div class="self-center">
         <span v-pre class="text-center font-semibold text-xl text-black"
@@ -8,7 +8,7 @@
       </div>
     </div>
     <div v-else>
-      <ol>
+      <ol class="max-w-max mx-auto">
         <job-listing
           v-for="job in displayedJobs"
           :key="job.id"
