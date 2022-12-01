@@ -1,4 +1,5 @@
 # Job-Search-Vue
+# Udemy course - Vue Masterclass
 
 ## Project setup
 ```
