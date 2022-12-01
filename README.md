@@ -1,4 +1,4 @@
-# first
+# Job-Search-Vue
 
 ## Project setup
 ```
